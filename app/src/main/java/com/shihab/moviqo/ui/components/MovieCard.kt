@@ -40,7 +40,6 @@ fun MovieCard(
         elevation = CardDefaults.cardElevation(defaultElevation = 6.dp)
     ) {
         Box(modifier = Modifier.fillMaxSize()) {
-            // 1. Movie Poster Image
             AsyncImage(
                 model = ImageRequest.Builder(LocalContext.current)
                     .data("${Constants.IMAGE_BASE_URL}${movie.posterPath}")
