@@ -50,7 +50,6 @@ fun MovieCard(
                 modifier = Modifier.fillMaxSize()
             )
 
-            // 2. Gradient Shadow (for text visibility)
             Box(
                 modifier = Modifier
                     .fillMaxSize()
@@ -62,7 +61,6 @@ fun MovieCard(
                     )
             )
 
-            // 3. Movie Info (Title & Rating)
             Column(
                 modifier = Modifier
                     .align(Alignment.BottomStart)
