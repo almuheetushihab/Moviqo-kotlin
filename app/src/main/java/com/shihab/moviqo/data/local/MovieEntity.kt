@@ -20,7 +20,7 @@ data class MovieEntity(
     }
 }
 
-// 2. Paging Key রাখার জন্য টেবিল (Paging 3 এর জন্য বাধ্যতামূলক)
+// 2. Paging Key রাখার জন্য টেবিল
 @Entity(tableName = "remote_keys")
 data class RemoteKeys(
     @PrimaryKey val movieId: Int,
@@ -28,7 +28,7 @@ data class RemoteKeys(
     val nextKey: Int?
 )
 
-// 3. Favorites টেবিল
+// 3. Favorites টেবিল (Redeclaration এরর ফিক্স করার জন্য এটি শুধু এখানেই থাকবে)
 @Entity(tableName = "favorite_movies")
 data class FavoriteMovieEntity(
     @PrimaryKey val id: Int,

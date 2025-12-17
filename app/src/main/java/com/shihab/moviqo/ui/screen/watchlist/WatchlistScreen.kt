@@ -1,7 +1,4 @@
 package com.shihab.moviqo.ui.screen.watchlist
-
-package com.shihab.moviqo.ui.screen.watchlist
-
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid

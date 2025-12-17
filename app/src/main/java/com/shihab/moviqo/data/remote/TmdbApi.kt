@@ -1,5 +1,10 @@
 package com.shihab.moviqo.data.remote
 
+import com.shihab.moviqo.ui.Constants
+import retrofit2.http.GET
+import retrofit2.http.Path
+import retrofit2.http.Query
+
 interface TmdbApi {
     // ... আগের কোড ...
 
