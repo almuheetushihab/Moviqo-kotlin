@@ -6,7 +6,7 @@ import com.shihab.moviqo.data.local.MovieDatabase
 import com.shihab.moviqo.data.remote.TmdbApi
 import com.shihab.moviqo.data.repository.MovieRepositoryImpl
 import com.shihab.moviqo.domain.repository.MovieRepository
-import com.shihab.moviqo.ui.util.Constants
+import com.shihab.moviqo.ui.Constants
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn

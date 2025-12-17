@@ -2,6 +2,14 @@ package com.shihab.moviqo.ui.theme
 
 import androidx.compose.ui.graphics.Color
 
+// Netflix Brand Colors
+val NetflixRed = Color(0xFFE50914)
+val Black = Color(0xFF000000)
+val DarkGray = Color(0xFF141414)
+val LightGray = Color(0xFFB3B3B3)
+val White = Color(0xFFFFFFFF)
+
+// Additional Colors
 val Purple80 = Color(0xFFD0BCFF)
 val PurpleGrey80 = Color(0xFFCCC2DC)
 val Pink80 = Color(0xFFEFB8C8)

@@ -5,8 +5,7 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Scaffold
-import androidx.compose.runtime.getValue
-import androidx.navigation.compose.currentBackStackEntryAsState
+
 import androidx.navigation.compose.rememberNavController
 import com.shihab.moviqo.ui.components.BottomNavigationBar
 import com.shihab.moviqo.ui.navigation.SetupNavGraph

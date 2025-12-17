@@ -1,7 +1,4 @@
 package com.shihab.moviqo.ui.screen.home
-
-package com.shihab.moviqo.ui.screen.home
-
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
@@ -75,7 +72,7 @@ fun HomeScreen(
                                 .padding(16.dp),
                             contentAlignment = Alignment.Center
                         ) {
-                            CircularProgressIndicator(size = 30.dp, color = Color.Gray)
+//                            CircularProgressIndicator(size = 30.dp, color = Color.Gray)
                         }
                     }
                 }

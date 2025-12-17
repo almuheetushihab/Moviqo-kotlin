@@ -3,23 +3,24 @@ plugins {
     alias(libs.plugins.kotlin.android)
     alias(libs.plugins.kotlin.compose)
     alias(libs.plugins.hilt.android)
-    alias(libs.plugins.kotlin.kapt)
+    id("kotlin-kapt") // Kapt plugin (Direct ID used to fix version conflict)
 }
 
 android {
     namespace = "com.shihab.moviqo"
-    compileSdk {
-        version = release(36)
-    }
+    compileSdk = 35 // ⚠️ Fixed: এটি সিম্পল ইন্টিজার হতে হবে
 
     defaultConfig {
         applicationId = "com.shihab.moviqo"
         minSdk = 24
-        targetSdk = 36
+        targetSdk = 35 // ⚠️ Fixed: 36 এখনো রিলিজ হয়নি, 35 বা 34 ব্যবহার করুন
         versionCode = 1
         versionName = "1.0"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+        vectorDrawables {
+            useSupportLibrary = true
+        }
     }
 
     buildTypes {
@@ -32,24 +33,31 @@ android {
         }
     }
     compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_11
-        targetCompatibility = JavaVersion.VERSION_11
+        sourceCompatibility = JavaVersion.VERSION_17
+        targetCompatibility = JavaVersion.VERSION_17
     }
     kotlinOptions {
-        jvmTarget = "11"
-    }
+        jvmTarget = "17"    }
     buildFeatures {
         compose = true
+    }
+    composeOptions {
+        kotlinCompilerExtensionVersion = "1.5.1"
+    }
+    packaging {
+        resources {
+            excludes += "/META-INF/{AL2.0,LGPL2.1}"
+        }
     }
 }
 
 dependencies {
-    // Core
+    // Core Android
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.lifecycle.runtime.ktx)
     implementation(libs.androidx.activity.compose)
 
-    // Compose
+    // Compose UI
     implementation(platform(libs.androidx.compose.bom))
     implementation(libs.androidx.compose.ui)
     implementation(libs.androidx.compose.ui.graphics)
@@ -57,7 +65,7 @@ dependencies {
     implementation(libs.androidx.compose.material3)
     implementation("androidx.compose.material:material-icons-extended:1.6.8")
 
-    // Navigation & Hilt Navigation
+    // Navigation
     implementation("androidx.navigation:navigation-compose:2.7.7")
     implementation("androidx.hilt:hilt-navigation-compose:1.2.0")
 
@@ -70,15 +78,15 @@ dependencies {
     implementation("androidx.room:room-runtime:$roomVersion")
     implementation("androidx.room:room-ktx:$roomVersion")
     implementation("androidx.room:room-paging:$roomVersion")
-    kapt("androidx.room:room-compiler:$roomVersion") // Kapt for Room
+    kapt("androidx.room:room-compiler:$roomVersion")
 
     // Paging 3
     implementation("androidx.paging:paging-runtime-ktx:3.3.0")
     implementation("androidx.paging:paging-compose:3.3.0")
 
-    // Hilt (Dependency Injection) - ✅ TOML থেকে ব্যবহার করা হচ্ছে
+    // Hilt (Dependency Injection)
     implementation(libs.hilt.android)
-    kapt(libs.hilt.compiler) // Kapt for Hilt
+    kapt(libs.hilt.compiler)
 
     // Coil (Image Loading)
     implementation("io.coil-kt:coil-compose:2.6.0")
@@ -91,3 +99,4 @@ dependencies {
     androidTestImplementation(libs.androidx.compose.ui.test.junit4)
     debugImplementation(libs.androidx.compose.ui.tooling)
     debugImplementation(libs.androidx.compose.ui.test.manifest)
+} // <--- এই ব্রাকেটটি আপনার মিসিং ছিল

@@ -35,9 +35,10 @@ fun ExploreScreen(
             placeholder = { Text("Search movies...") },
             leadingIcon = { Icon(Icons.Default.Search, contentDescription = null) },
             shape = RoundedCornerShape(24.dp),
-            colors = TextFieldDefaults.outlinedTextFieldColors(
-                focusedBorderColor = Color(0xFFE50914),
-                cursorColor = Color(0xFFE50914)
+            colors = OutlinedTextFieldDefaults.colors(
+                focusedBorderColor = Color(0xFFE50914), // ফোকাস করলে লাল বর্ডার
+                cursorColor = Color(0xFFE50914),        // লাল কার্সর
+                unfocusedBorderColor = Color.Gray       // ফোকাস না থাকলে গ্রে
             )
         )
 

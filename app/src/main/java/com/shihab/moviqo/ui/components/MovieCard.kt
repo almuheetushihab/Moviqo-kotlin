@@ -22,7 +22,7 @@ import androidx.compose.ui.unit.sp
 import coil.compose.AsyncImage
 import coil.request.ImageRequest
 import com.shihab.moviqo.domain.model.Movie
-import com.shihab.moviqo.ui.util.Constants
+import com.shihab.moviqo.ui.Constants
 
 @Composable
 fun MovieCard(
