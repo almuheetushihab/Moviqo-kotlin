@@ -3,45 +3,39 @@ package com.shihab.moviqo
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
-import androidx.activity.enableEdgeToEdge
-import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Scaffold
-import androidx.compose.material3.Text
-import androidx.compose.runtime.Composable
-import androidx.compose.ui.Modifier
-import androidx.compose.ui.tooling.preview.Preview
-import com.shihab.moviqo.ui.theme.MoviqokotlinTheme
+import androidx.compose.runtime.getValue
+import androidx.navigation.compose.currentBackStackEntryAsState
+import androidx.navigation.compose.rememberNavController
+import com.shihab.moviqo.ui.components.BottomNavigationBar
+import com.shihab.moviqo.ui.navigation.SetupNavGraph
+import com.shihab.moviqo.ui.theme.MoviqoTheme
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        enableEdgeToEdge()
         setContent {
-            MoviqokotlinTheme {
-                Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
-                    Greeting(
-                        name = "Android",
-                        modifier = Modifier.padding(innerPadding)
-                    )
+            MoviqoTheme {
+                val navController = rememberNavController()
+
+                // Scaffold হলো একটি লেআউট যা টপ বার, বটম বার ম্যানেজ করে
+                Scaffold(
+                    bottomBar = {
+                        BottomNavigationBar(navController = navController)
+                    }
+                ) { innerPadding ->
+                    // কন্টেন্ট এরিয়া (যেখানে স্ক্রিন চেঞ্জ হবে)
+                    // innerPadding ব্যবহার করতে হবে যাতে কন্টেন্ট বটম বারের নিচে ঢাকা না পড়ে
+                    androidx.compose.foundation.layout.Box(
+                        modifier = androidx.compose.ui.Modifier.padding(innerPadding)
+                    ) {
+                        SetupNavGraph(navController = navController)
+                    }
                 }
             }
         }
-    }
-}
-
-@Composable
-fun Greeting(name: String, modifier: Modifier = Modifier) {
-    Text(
-        text = "Hello $name!",
-        modifier = modifier
-    )
-}
-
-@Preview(showBackground = true)
-@Composable
-fun GreetingPreview() {
-    MoviqokotlinTheme {
-        Greeting("Android")
     }
 }
