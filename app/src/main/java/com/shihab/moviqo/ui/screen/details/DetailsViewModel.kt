@@ -23,17 +23,22 @@ class DetailsViewModel @Inject constructor(
 
     private val _isLoading = mutableStateOf(false)
     val isLoading: State<Boolean> = _isLoading
-
+    private val _trailerUrl = mutableStateOf<String?>(null)
+    val trailerUrl: State<String?> = _trailerUrl
     // ১. API থেকে মুভি লোড করা
     fun loadMovie(movieId: String) {
         viewModelScope.launch {
             _isLoading.value = true
             try {
-                // স্ট্রিং আইডিকে ইন্টিজারে কনভার্ট করে API কল
                 val id = movieId.toIntOrNull()
                 if (id != null) {
+                    // ১. মুভি ডিটেইলস আনা
                     val movie = repository.getMovieDetails(id)
                     _movieDetails.value = movie
+
+                    // ২. ট্রেলার লিংক আনা (নতুন কোড) 🔥
+                    val trailer = repository.getMovieTrailer(id)
+                    _trailerUrl.value = trailer
                 }
             } catch (e: Exception) {
                 e.printStackTrace()
@@ -54,4 +59,5 @@ class DetailsViewModel @Inject constructor(
             repository.toggleFavorite(movie, isCurrentlyFavorite)
         }
     }
+
 }

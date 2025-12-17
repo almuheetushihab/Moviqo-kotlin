@@ -83,11 +83,12 @@ dependencies {
     // Paging 3
     implementation("androidx.paging:paging-runtime-ktx:3.3.0")
     implementation("androidx.paging:paging-compose:3.3.0")
-
+    implementation("com.pierfrancescosoffritti.androidyoutubeplayer:core:12.1.0") // YouTube Player
+    implementation("androidx.compose.foundation:foundation:1.6.0")
     // Hilt (Dependency Injection)
     implementation(libs.hilt.android)
     kapt(libs.hilt.compiler)
-
+    implementation("com.pierfrancescosoffritti.androidyoutubeplayer:core:12.1.0")
     // Coil (Image Loading)
     implementation("io.coil-kt:coil-compose:2.6.0")
 

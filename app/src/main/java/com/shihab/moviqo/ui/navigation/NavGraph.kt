@@ -8,6 +8,7 @@ import com.shihab.moviqo.ui.screen.details.MovieDetailsScreen
 import com.shihab.moviqo.ui.screen.explore.ExploreScreen
 import com.shihab.moviqo.ui.screen.home.HomeScreen
 import com.shihab.moviqo.ui.screen.settings.SettingsScreen
+import com.shihab.moviqo.ui.screen.shorts.ShortsScreen
 import com.shihab.moviqo.ui.screen.splash.SplashScreen
 import com.shihab.moviqo.ui.screen.watchlist.WatchlistScreen
 
@@ -47,6 +48,9 @@ fun SetupNavGraph(navController: NavHostController) {
             // আর্গুমেন্ট থেকে মুভি আইডি নেওয়া হচ্ছে
             val movieId = backStackEntry.arguments?.getString("movieId")
             MovieDetailsScreen(navController = navController, movieId = movieId)
+        }
+        composable(Screen.Shorts.route) {
+            ShortsScreen(navController = navController)
         }
     }
 }

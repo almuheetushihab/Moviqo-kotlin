@@ -1,5 +1,7 @@
 package com.shihab.moviqo.ui.screen.details
 
+import android.content.Intent
+import android.net.Uri
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.rememberScrollState
@@ -31,26 +33,26 @@ import com.shihab.moviqo.ui.Constants
 @Composable
 fun MovieDetailsScreen(
     navController: NavController,
-    movieId: String?, // Navigation থেকে আসবে
+    movieId: String?,
     viewModel: DetailsViewModel = hiltViewModel()
 ) {
-    // ১. স্ক্রিন ওপেন হলে ডেটা লোড করা
+    val context = LocalContext.current // ইনটেন্ট চালানোর জন্য কনটেক্সট লাগবে
+
     LaunchedEffect(key1 = movieId) {
         movieId?.let { viewModel.loadMovie(it) }
     }
 
     val movie = viewModel.movieDetails.value
+    val trailerUrl = viewModel.trailerUrl.value // ট্রেলার ইউআরএল
     val isLoading = viewModel.isLoading.value
 
-    // ২. ফেভারিট স্ট্যাটাস চেক করা (যদি মুভি লোড হয়ে থাকে)
     val isFavoriteState = if (movie != null) {
         viewModel.isFavorite(movie.id).collectAsState(initial = false)
     } else {
-        remember { mutableStateOf(false) } // ডামি স্টেট
+        remember { mutableStateOf(false) }
     }
     val isFavorite = isFavoriteState.value
 
-    // ৩. লোডিং বা এরর হ্যান্ডলিং
     if (isLoading || movie == null) {
         Box(modifier = Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
             CircularProgressIndicator(color = Color(0xFFE50914))
@@ -58,7 +60,6 @@ fun MovieDetailsScreen(
         return
     }
 
-    // ৪. মেইন UI (Scaffold ব্যবহার করছি যাতে FAB বসানো যায়)
     Scaffold(
         floatingActionButton = {
             FloatingActionButton(
@@ -74,11 +75,11 @@ fun MovieDetailsScreen(
                 )
             }
         },
-        containerColor = Color.Black // পুরো স্ক্রিনের ব্যাকগ্রাউন্ড কালো
-    ) { padding -> // padding প্যারামিটারটি ইগনোর করছি কাস্টম ডিজাইনের জন্য
+        containerColor = Color.Black
+    ) { padding ->
 
         Box(modifier = Modifier.fillMaxSize()) {
-            // A. Backdrop Image (Background)
+            // A. Backdrop Image
             AsyncImage(
                 model = ImageRequest.Builder(LocalContext.current)
                     .data("${Constants.IMAGE_BASE_URL}${movie.posterPath}")
@@ -88,7 +89,7 @@ fun MovieDetailsScreen(
                 contentScale = ContentScale.Crop,
                 modifier = Modifier
                     .fillMaxWidth()
-                    .height(450.dp) // ছবির হাইট একটু বাড়ালাম
+                    .height(450.dp)
             )
 
             // B. Back Button
@@ -101,18 +102,14 @@ fun MovieDetailsScreen(
                 Icon(Icons.Default.ArrowBack, contentDescription = "Back", tint = Color.White)
             }
 
-            // C. Bottom Gradient & Content
+            // C. Content
             Column(
                 modifier = Modifier
                     .fillMaxSize()
-                    .padding(top = 380.dp) // ছবির নিচ থেকে শুরু হবে
+                    .padding(top = 380.dp)
                     .background(
                         brush = Brush.verticalGradient(
-                            colors = listOf(
-                                Color.Transparent,
-                                Color(0xFF141414), // Netflix Dark Grey
-                                Color(0xFF141414)
-                            ),
+                            colors = listOf(Color.Transparent, Color(0xFF141414), Color(0xFF141414)),
                             startY = 0f,
                             endY = 300f
                         )
@@ -120,7 +117,6 @@ fun MovieDetailsScreen(
                     .verticalScroll(rememberScrollState())
             ) {
                 Column(modifier = Modifier.padding(horizontal = 20.dp, vertical = 10.dp)) {
-                    // Title
                     Text(
                         text = movie.title,
                         color = Color.White,
@@ -131,17 +127,16 @@ fun MovieDetailsScreen(
 
                     Spacer(modifier = Modifier.height(12.dp))
 
-                    // Meta Data (Rating, Date)
                     Row(verticalAlignment = Alignment.CenterVertically) {
                         Text(
                             text = "Match ${String.format("%.0f", movie.voteAverage * 10)}%",
-                            color = Color(0xFF46D369), // Netflix Match Green
+                            color = Color(0xFF46D369),
                             fontWeight = FontWeight.Bold,
                             fontSize = 14.sp
                         )
                         Spacer(modifier = Modifier.width(16.dp))
                         Text(
-                            text = movie.releaseDate.take(4), // শুধু সাল (Year) দেখাবে
+                            text = movie.releaseDate.take(4),
                             color = Color.LightGray,
                             fontSize = 14.sp
                         )
@@ -149,23 +144,40 @@ fun MovieDetailsScreen(
 
                     Spacer(modifier = Modifier.height(24.dp))
 
-                    // Watch Trailer Button
+                    // 🔥 WATCH TRAILER BUTTON ACTION 🔥
                     Button(
-                        onClick = { /* Trailer Logic Placeholder */ },
+                        onClick = {
+                            if (trailerUrl != null) {
+                                // ট্রেলার থাকলে ইউটিউব ওপেন হবে
+                                val intent = Intent(Intent.ACTION_VIEW, Uri.parse(trailerUrl))
+                                context.startActivity(intent)
+                            } else {
+                                // ট্রেলার না থাকলে টোস্ট মেসেজ দেবে
+                                // (Toast দেখানোর কোড চাইলে দিতে পারেন, আপাতত দরকার নেই)
+                            }
+                        },
+                        enabled = trailerUrl != null, // ট্রেলার লোড না হওয়া পর্যন্ত বাটন ডিজেবল থাকবে
                         modifier = Modifier
                             .fillMaxWidth()
                             .height(48.dp),
-                        colors = ButtonDefaults.buttonColors(containerColor = Color.White),
+                        colors = ButtonDefaults.buttonColors(
+                            containerColor = Color.White,
+                            disabledContainerColor = Color.Gray
+                        ),
                         shape = RoundedCornerShape(4.dp)
                     ) {
                         Icon(Icons.Default.PlayArrow, contentDescription = null, tint = Color.Black)
                         Spacer(modifier = Modifier.width(8.dp))
-                        Text("Watch Trailer", color = Color.Black, fontWeight = FontWeight.Bold, fontSize = 16.sp)
+                        Text(
+                            text = if (trailerUrl != null) "Watch Trailer" else "Loading Trailer...",
+                            color = Color.Black,
+                            fontWeight = FontWeight.Bold,
+                            fontSize = 16.sp
+                        )
                     }
 
                     Spacer(modifier = Modifier.height(24.dp))
 
-                    // Overview
                     Text(
                         text = movie.overview,
                         color = Color.White,
@@ -174,10 +186,9 @@ fun MovieDetailsScreen(
                         fontWeight = FontWeight.Light
                     )
 
-                    // Extra Space for FAB visibility at bottom
                     Spacer(modifier = Modifier.height(80.dp))
                 }
             }
         }
-    }
-}
+    } // Scaffold End
+} // Function End

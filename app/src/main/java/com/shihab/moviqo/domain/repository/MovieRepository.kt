@@ -13,4 +13,6 @@ interface MovieRepository {
     fun getAllFavorites(): Flow<List<Movie>>
     fun checkIsFavorite(id: Int): Flow<Boolean>
     suspend fun toggleFavorite(movie: Movie, isFavorite: Boolean)
+
+    suspend fun getMovieTrailer(movieId: Int): String?
 }

@@ -11,6 +11,7 @@ import com.shihab.moviqo.data.paging.MovieRemoteMediator
 import com.shihab.moviqo.data.remote.TmdbApi
 import com.shihab.moviqo.domain.model.Movie
 import com.shihab.moviqo.domain.repository.MovieRepository
+import com.shihab.moviqo.ui.Constants
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
 import javax.inject.Inject
@@ -48,6 +49,20 @@ class MovieRepositoryImpl @Inject constructor(
             entities.map {
                 Movie(it.id, it.title, "", it.posterPath, it.voteAverage, it.releaseDate)
             }
+        }
+    }
+
+    override suspend fun getMovieTrailer(movieId: Int): String? {
+        return try {
+            val response = api.getMovieVideos(movieId = movieId, apiKey = Constants.API_KEY)
+            // আমরা খুঁজব এমন ভিডিও যা "YouTube" এ আছে এবং টাইপ "Trailer"
+            val trailer = response.results.find { it.site == "YouTube" && it.type == "Trailer" }
+            // যদি ট্রেলার না পাই, তবে প্রথম ভিডিওটা নেব
+            val videoKey = trailer?.key ?: response.results.firstOrNull()?.key
+
+            if (videoKey != null) "https://www.youtube.com/watch?v=$videoKey" else null
+        } catch (e: Exception) {
+            null
         }
     }
 

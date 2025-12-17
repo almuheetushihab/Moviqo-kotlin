@@ -25,4 +25,10 @@ interface TmdbApi {
         @Query("api_key") apiKey: String = Constants.API_KEY,
         @Query("page") page: Int
     ): MovieResponseDto
+
+    @GET("movie/{movie_id}/videos")
+    suspend fun getMovieVideos(
+        @Path("movie_id") movieId: Int,
+        @Query("api_key") apiKey: String
+    ): VideoResponseDto
 }
