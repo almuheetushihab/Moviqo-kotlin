@@ -1,6 +1,8 @@
 package com.shihab.moviqo.ui.screen.home
+
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.grid.GridCells
+import androidx.compose.foundation.lazy.grid.GridItemSpan
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.WifiOff
@@ -16,6 +18,7 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import androidx.paging.LoadState
 import androidx.paging.compose.collectAsLazyPagingItems
+import com.shihab.moviqo.ui.components.HomeTopBar
 import com.shihab.moviqo.ui.components.MovieCard
 import com.shihab.moviqo.ui.navigation.Screen
 
@@ -28,19 +31,13 @@ fun HomeScreen(
     val movies = viewModel.moviePagingFlow.collectAsLazyPagingItems()
 
     Scaffold(
+        // ১. এখানে আমাদের কাস্টম টপ বার বসানো হলো
         topBar = {
-            TopAppBar(
-                title = {
-                    Text(
-                        "Trending Now 🔥",
-                        fontWeight = FontWeight.Bold,
-                        color = Color.Black
-                    )
-                },
-                colors = TopAppBarDefaults.topAppBarColors(containerColor = Color.White)
+            HomeTopBar(
+                onSearchClick = { navController.navigate(Screen.Explore.route) }
             )
         },
-        containerColor = Color(0xFFF5F5F5) // Light Grey Background
+        containerColor = Color(0xFFF5F5F5)
     ) { padding ->
 
         if (movies.loadState.refresh is LoadState.Loading) {
@@ -50,21 +47,37 @@ fun HomeScreen(
         } else {
             LazyVerticalGrid(
                 columns = GridCells.Fixed(2),
-                contentPadding = PaddingValues(8.dp),
-                modifier = Modifier.padding(padding)
+                contentPadding = PaddingValues(
+                    top = padding.calculateTopPadding(),
+                    bottom = padding.calculateBottomPadding() + 80.dp, // BottomBar এর জন্য স্পেস
+                    start = 8.dp,
+                    end = 8.dp
+                ),
+                modifier = Modifier.fillMaxSize()
             ) {
+                // ২. "Trending Now" লেখাটি এখন গ্রিডের ভেতরে হেডার হিসেবে থাকবে
+                item(span = { GridItemSpan(2) }) {
+                    Text(
+                        text = "Trending Now 🔥",
+                        fontSize = 20.sp,
+                        fontWeight = FontWeight.Bold,
+                        color = Color.Black,
+                        modifier = Modifier.padding(start = 8.dp, top = 16.dp, bottom = 8.dp)
+                    )
+                }
+
+                // মুভি লিস্ট
                 items(movies.itemCount) { index ->
                     val movie = movies[index]
                     if (movie != null) {
                         MovieCard(movie = movie) {
-                            // Navigate to Details Screen
                             navController.navigate(Screen.MovieDetails.createRoute(movie.id))
                         }
                     }
                 }
 
-                // Pagination Loading State (bottom loader)
-                item {
+                // পেজ লোডিং লোডার (নিচে)
+                item(span = { GridItemSpan(2) }) {
                     if (movies.loadState.append is LoadState.Loading) {
                         Box(
                             modifier = Modifier
@@ -72,13 +85,13 @@ fun HomeScreen(
                                 .padding(16.dp),
                             contentAlignment = Alignment.Center
                         ) {
-//                            CircularProgressIndicator(size = 30.dp, color = Color.Gray)
+                            CircularProgressIndicator(color = Color(0xFFE50914))
                         }
                     }
                 }
             }
 
-            // Error Handling (Offline/No Data)
+            // ইন্টারনেট এরর হ্যান্ডলিং
             if (movies.loadState.refresh is LoadState.Error) {
                 Box(modifier = Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
                     Column(horizontalAlignment = Alignment.CenterHorizontally) {
@@ -90,6 +103,7 @@ fun HomeScreen(
                         )
                         Spacer(modifier = Modifier.height(8.dp))
                         Text("No Internet Connection", color = Color.Gray)
+                        Spacer(modifier = Modifier.height(16.dp))
                         Button(
                             onClick = { movies.retry() },
                             colors = ButtonDefaults.buttonColors(containerColor = Color(0xFFE50914))
