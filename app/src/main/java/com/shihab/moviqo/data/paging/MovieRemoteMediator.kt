@@ -27,14 +27,20 @@ class MovieRemoteMediator(
                 val remoteKeys = getRemoteKeyClosestToCurrentPosition(state)
                 remoteKeys?.nextKey?.minus(1) ?: 1
             }
+
             LoadType.PREPEND -> {
                 val remoteKeys = getRemoteKeyForFirstItem(state)
-                val prevKey = remoteKeys?.prevKey ?: return MediatorResult.Success(endOfPaginationReached = remoteKeys != null)
+                val prevKey = remoteKeys?.prevKey ?: return MediatorResult.Success(
+                    endOfPaginationReached = remoteKeys != null
+                )
                 prevKey
             }
+
             LoadType.APPEND -> {
                 val remoteKeys = getRemoteKeyForLastItem(state)
-                val nextKey = remoteKeys?.nextKey ?: return MediatorResult.Success(endOfPaginationReached = remoteKeys != null)
+                val nextKey = remoteKeys?.nextKey ?: return MediatorResult.Success(
+                    endOfPaginationReached = remoteKeys != null
+                )
                 nextKey
             }
         }
@@ -55,7 +61,15 @@ class MovieRemoteMediator(
                     RemoteKeys(movieId = it.id, prevKey = prevKey, nextKey = nextKey)
                 }
                 val entities = movies.map {
-                    MovieEntity(it.id, it.title, it.overview, it.posterPath ?: "", it.voteAverage, it.releaseDate ?: "", page)
+                    MovieEntity(
+                        it.id,
+                        it.title,
+                        it.overview,
+                        it.posterPath ?: "",
+                        it.voteAverage,
+                        it.releaseDate ?: "",
+                        page
+                    )
                 }
 
                 db.movieDao().insertAllRemoteKeys(keys)

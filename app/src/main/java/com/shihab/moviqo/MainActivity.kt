@@ -20,14 +20,11 @@ class MainActivity : ComponentActivity() {
             MoviqoTheme {
                 val navController = rememberNavController()
 
-                // Scaffold হলো একটি লেআউট যা টপ বার, বটম বার ম্যানেজ করে
                 Scaffold(
                     bottomBar = {
                         BottomNavigationBar(navController = navController)
                     }
                 ) { innerPadding ->
-                    // কন্টেন্ট এরিয়া (যেখানে স্ক্রিন চেঞ্জ হবে)
-                    // innerPadding ব্যবহার করতে হবে যাতে কন্টেন্ট বটম বারের নিচে ঢাকা না পড়ে
                     androidx.compose.foundation.layout.Box(
                         modifier = androidx.compose.ui.Modifier.padding(innerPadding)
                     ) {

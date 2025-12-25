@@ -15,7 +15,6 @@ data class MovieDto(
     @SerializedName("vote_average") val voteAverage: Double,
     @SerializedName("release_date") val releaseDate: String?
 ) {
-    // DTO থেকে Domain মডেলে কনভার্ট করার ফাংশন
     fun toDomain(): Movie {
         return Movie(
             id = id,
