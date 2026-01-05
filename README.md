@@ -10,7 +10,7 @@
 
 | Home Screen | Shorts (Trailers) | Movie Details |
 |:---:|:---:|:---:|
-| <img src="img/home.png" width="250"/> | <img src="img/shorts.jpeg" width="250"/> | <img src="img/details.jpeg" width="250"/> |
+| <img src="img/home.jpeg" width="250"/> | <img src="img/shorts.jpeg" width="250"/> | <img src="img/details.jpeg" width="250"/> |
 
 | Search & Explore | Watchlist | Settings |
 |:---:|:---:|:---:|
