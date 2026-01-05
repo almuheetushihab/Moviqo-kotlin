@@ -5,7 +5,7 @@ data class VideoResponseDto(
 )
 
 data class VideoDto(
-    val key: String, // ইউটিউব ভিডিও আইডি
-    val site: String, // যেমন: "YouTube"
-    val type: String  // যেমন: "Trailer"
+    val key: String,
+    val site: String,
+    val type: String
 )

@@ -6,7 +6,6 @@ import retrofit2.http.Path
 import retrofit2.http.Query
 
 interface TmdbApi {
-    // ... আগের কোড ...
 
     @GET("search/movie")
     suspend fun searchMovies(
@@ -18,7 +17,7 @@ interface TmdbApi {
     suspend fun getMovieDetails(
         @Path("movie_id") movieId: Int,
         @Query("api_key") apiKey: String = Constants.API_KEY
-    ): MovieDto // MovieDto রিটার্ন করবে
+    ): MovieDto
 
     @GET("movie/popular")
     suspend fun getPopularMovies(

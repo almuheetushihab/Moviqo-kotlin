@@ -9,11 +9,7 @@ import androidx.compose.material.icons.filled.Settings
 import androidx.compose.material.icons.filled.VideoLibrary
 import androidx.compose.ui.graphics.vector.ImageVector
 
-<<<<<<< HEAD
 
-=======
-// সব স্ক্রিনের নাম এখানে থাকবে
->>>>>>> 8ae55afdb29bb7667223b57bacd543f23387ddf4
 sealed class Screen(val route: String, val title: String? = null, val icon: ImageVector? = null) {
 
     // Bottom Bar Screens

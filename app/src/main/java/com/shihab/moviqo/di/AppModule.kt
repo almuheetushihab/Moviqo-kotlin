@@ -19,7 +19,6 @@ import javax.inject.Singleton
 @InstallIn(SingletonComponent::class)
 object AppModule {
 
-    // 1. Retrofit Instance Provider
     @Provides
     @Singleton
     fun provideTmdbApi(): TmdbApi {
@@ -30,7 +29,6 @@ object AppModule {
             .create(TmdbApi::class.java)
     }
 
-    // 2. Room Database Provider
     @Provides
     @Singleton
     fun provideMovieDatabase(app: Application): MovieDatabase {

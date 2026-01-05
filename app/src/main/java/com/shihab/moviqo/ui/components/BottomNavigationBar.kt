@@ -14,18 +14,10 @@ import com.shihab.moviqo.ui.navigation.Screen
 
 @Composable
 fun BottomNavigationBar(navController: NavController) {
-<<<<<<< HEAD
     val items = listOf(
         Screen.Home,
         Screen.Explore,
         Screen.Shorts,
-=======
-    // 🔥 লিস্টে Shorts যোগ করা হয়েছে
-    val items = listOf(
-        Screen.Home,
-        Screen.Explore,
-        Screen.Shorts,   // 👈 মাঝখানে থাকল
->>>>>>> 8ae55afdb29bb7667223b57bacd543f23387ddf4
         Screen.Watchlist,
         Screen.Settings
     )
@@ -36,11 +28,7 @@ fun BottomNavigationBar(navController: NavController) {
 
     if (showBottomBar) {
         NavigationBar(
-<<<<<<< HEAD
             containerColor = Color.Black,
-=======
-            containerColor = Color.Black, // ব্যাকগ্রাউন্ড কালো দিলে মুভি অ্যাপে ভালো লাগে
->>>>>>> 8ae55afdb29bb7667223b57bacd543f23387ddf4
             contentColor = Color.White
         ) {
             items.forEach { screen ->
@@ -61,19 +49,11 @@ fun BottomNavigationBar(navController: NavController) {
                         }
                     },
                     colors = NavigationBarItemDefaults.colors(
-<<<<<<< HEAD
                         selectedIconColor = Color(0xFFE50914),
                         selectedTextColor = Color(0xFFE50914),
                         unselectedIconColor = Color.Gray,
                         unselectedTextColor = Color.Gray,
                         indicatorColor = Color.Transparent
-=======
-                        selectedIconColor = Color(0xFFE50914), // Netflix Red
-                        selectedTextColor = Color(0xFFE50914),
-                        unselectedIconColor = Color.Gray,
-                        unselectedTextColor = Color.Gray,
-                        indicatorColor = Color.Transparent // সিলেকশন ব্যাকগ্রাউন্ড সরালাম
->>>>>>> 8ae55afdb29bb7667223b57bacd543f23387ddf4
                     )
                 )
             }

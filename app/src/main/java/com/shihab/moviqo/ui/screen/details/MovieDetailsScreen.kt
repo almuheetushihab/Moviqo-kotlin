@@ -36,22 +36,14 @@ fun MovieDetailsScreen(
     movieId: String?,
     viewModel: DetailsViewModel = hiltViewModel()
 ) {
-<<<<<<< HEAD
     val context = LocalContext.current
-=======
-    val context = LocalContext.current // ইনটেন্ট চালানোর জন্য কনটেক্সট লাগবে
->>>>>>> 8ae55afdb29bb7667223b57bacd543f23387ddf4
 
     LaunchedEffect(key1 = movieId) {
         movieId?.let { viewModel.loadMovie(it) }
     }
 
     val movie = viewModel.movieDetails.value
-<<<<<<< HEAD
     val trailerUrl = viewModel.trailerUrl.value
-=======
-    val trailerUrl = viewModel.trailerUrl.value // ট্রেলার ইউআরএল
->>>>>>> 8ae55afdb29bb7667223b57bacd543f23387ddf4
     val isLoading = viewModel.isLoading.value
 
     val isFavoriteState = if (movie != null) {
@@ -156,7 +148,6 @@ fun MovieDetailsScreen(
                     Button(
                         onClick = {
                             if (trailerUrl != null) {
-<<<<<<< HEAD
                                 val intent = Intent(Intent.ACTION_VIEW, Uri.parse(trailerUrl))
                                 context.startActivity(intent)
                             } else {
@@ -164,17 +155,6 @@ fun MovieDetailsScreen(
                             }
                         },
                         enabled = trailerUrl != null,
-=======
-                                // ট্রেলার থাকলে ইউটিউব ওপেন হবে
-                                val intent = Intent(Intent.ACTION_VIEW, Uri.parse(trailerUrl))
-                                context.startActivity(intent)
-                            } else {
-                                // ট্রেলার না থাকলে টোস্ট মেসেজ দেবে
-                                // (Toast দেখানোর কোড চাইলে দিতে পারেন, আপাতত দরকার নেই)
-                            }
-                        },
-                        enabled = trailerUrl != null, // ট্রেলার লোড না হওয়া পর্যন্ত বাটন ডিজেবল থাকবে
->>>>>>> 8ae55afdb29bb7667223b57bacd543f23387ddf4
                         modifier = Modifier
                             .fillMaxWidth()
                             .height(48.dp),
@@ -208,10 +188,5 @@ fun MovieDetailsScreen(
                 }
             }
         }
-<<<<<<< HEAD
     }
 }
-=======
-    } // Scaffold End
-} // Function End
->>>>>>> 8ae55afdb29bb7667223b57bacd543f23387ddf4
