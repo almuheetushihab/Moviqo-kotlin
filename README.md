@@ -62,6 +62,7 @@ Contributions are welcome! If you find a bug or want to add a feature, feel free
 
 This project is licensed under the MIT License.
 
+Notion : https://wholesale-wallet-b2d.notion.site/Moviqo-Project-Documentation-2df0765c54638060bcc6effc3bae0cf3?source=copy_link
 ---
 <div align="center">
   Built with ❤️ by <a href="https://www.linkedin.com/in/your-profile">MD. AL MUHEETU</a>
