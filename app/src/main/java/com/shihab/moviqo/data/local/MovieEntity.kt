@@ -4,18 +4,28 @@ import androidx.room.Entity
 import androidx.room.PrimaryKey
 import com.shihab.moviqo.domain.model.Movie
 
+
 @Entity(tableName = "movies")
 data class MovieEntity(
     @PrimaryKey val id: Int,
     val title: String,
     val overview: String,
     val posterPath: String,
+    val backdropPath: String?,
     val voteAverage: Double,
     val releaseDate: String,
     val page: Int
 ) {
     fun toDomain(): Movie {
-        return Movie(id, title, overview, posterPath, voteAverage, releaseDate)
+        return Movie(
+            id = id,
+            title = title,
+            overview = overview,
+            voteAverage = voteAverage,
+            releaseDate = releaseDate,
+            posterPath = posterPath,
+            backdropPath = backdropPath
+        )
     }
 }
 

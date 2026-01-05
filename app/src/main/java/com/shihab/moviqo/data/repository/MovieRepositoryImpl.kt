@@ -47,7 +47,15 @@ class MovieRepositoryImpl @Inject constructor(
     override fun getAllFavorites(): Flow<List<Movie>> {
         return db.movieDao().getAllFavorites().map { entities ->
             entities.map {
-                Movie(it.id, it.title, "", it.posterPath, it.voteAverage, it.releaseDate)
+                Movie(
+                    id = it.id,
+                    title = it.title,
+                    overview = "",
+                    voteAverage = it.voteAverage,
+                    releaseDate = it.releaseDate,
+                    posterPath = it.posterPath,
+                    backdropPath = null
+                )
             }
         }
     }
@@ -55,9 +63,7 @@ class MovieRepositoryImpl @Inject constructor(
     override suspend fun getMovieTrailer(movieId: Int): String? {
         return try {
             val response = api.getMovieVideos(movieId = movieId, apiKey = Constants.API_KEY)
-            // আমরা খুঁজব এমন ভিডিও যা "YouTube" এ আছে এবং টাইপ "Trailer"
             val trailer = response.results.find { it.site == "YouTube" && it.type == "Trailer" }
-            // যদি ট্রেলার না পাই, তবে প্রথম ভিডিওটা নেব
             val videoKey = trailer?.key ?: response.results.firstOrNull()?.key
 
             if (videoKey != null) "https://www.youtube.com/watch?v=$videoKey" else null
@@ -70,7 +76,7 @@ class MovieRepositoryImpl @Inject constructor(
         val entity = FavoriteMovieEntity(
             id = movie.id,
             title = movie.title,
-            posterPath = movie.posterPath,
+            posterPath = movie.posterPath ?: "",
             voteAverage = movie.voteAverage,
             releaseDate = movie.releaseDate
         )

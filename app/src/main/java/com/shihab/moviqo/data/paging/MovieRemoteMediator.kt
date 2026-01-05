@@ -57,18 +57,21 @@ class MovieRemoteMediator(
                 }
                 val prevKey = if (page == 1) null else page - 1
                 val nextKey = if (endOfPaginationReached) null else page + 1
+
                 val keys = movies.map {
                     RemoteKeys(movieId = it.id, prevKey = prevKey, nextKey = nextKey)
                 }
-                val entities = movies.map {
+
+                val entities = movies.map { movieDto ->
                     MovieEntity(
-                        it.id,
-                        it.title,
-                        it.overview,
-                        it.posterPath ?: "",
-                        it.voteAverage,
-                        it.releaseDate ?: "",
-                        page
+                        id = movieDto.id,
+                        title = movieDto.title,
+                        overview = movieDto.overview,
+                        posterPath = movieDto.posterPath ?: "",
+                        voteAverage = movieDto.voteAverage,
+                        releaseDate = movieDto.releaseDate ?: "",
+                        backdropPath = movieDto.backdropPath ?: "",
+                        page = page
                     )
                 }
 

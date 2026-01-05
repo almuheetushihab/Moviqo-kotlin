@@ -36,7 +36,9 @@ object AppModule {
             app,
             MovieDatabase::class.java,
             "moviqo_db"
-        ).build()
+        )
+            .fallbackToDestructiveMigration()
+            .build()
     }
 
     // 3. Repository Provider
