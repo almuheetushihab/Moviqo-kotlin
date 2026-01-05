@@ -10,11 +10,11 @@
 
 | Home Screen | Shorts (Trailers) | Movie Details |
 |:---:|:---:|:---:|
-| <img src="screenshot_home.jpg" width="250"/> | <img src="screenshot_shorts.jpg" width="250"/> | <img src="screenshot_details.jpg" width="250"/> |
+| <img src="img/home.jpg" width="250"/> | <img src="img/shorts.jpg" width="250"/> | <img src="img/details.jpg" width="250"/> |
 
-| Search/Explore | Watchlist | Settings |
+| Search & Explore | Watchlist | Settings |
 |:---:|:---:|:---:|
-| <img src="screenshot_search.jpg" width="250"/> | <img src="screenshot_watchlist.jpg" width="250"/> | <img src="screenshot_settings.jpg" width="250"/> |
+| <img src="img/search.jpg" width="250"/> | <img src="img/watchlist.jpg" width="250"/> | <img src="img/settings.jpg" width="250"/> |
 
 ## ✨ Key Features
 
