@@ -31,6 +31,10 @@ fun HomeScreen(
     val movies = viewModel.moviePagingFlow.collectAsLazyPagingItems()
 
     Scaffold(
+<<<<<<< HEAD
+=======
+        // ১. এখানে আমাদের কাস্টম টপ বার বসানো হলো
+>>>>>>> 8ae55afdb29bb7667223b57bacd543f23387ddf4
         topBar = {
             HomeTopBar(
                 onSearchClick = { navController.navigate(Screen.Explore.route) }
@@ -48,12 +52,20 @@ fun HomeScreen(
                 columns = GridCells.Fixed(2),
                 contentPadding = PaddingValues(
                     top = padding.calculateTopPadding(),
+<<<<<<< HEAD
                     bottom = padding.calculateBottomPadding() + 80.dp,
+=======
+                    bottom = padding.calculateBottomPadding() + 80.dp, // BottomBar এর জন্য স্পেস
+>>>>>>> 8ae55afdb29bb7667223b57bacd543f23387ddf4
                     start = 8.dp,
                     end = 8.dp
                 ),
                 modifier = Modifier.fillMaxSize()
             ) {
+<<<<<<< HEAD
+=======
+                // ২. "Trending Now" লেখাটি এখন গ্রিডের ভেতরে হেডার হিসেবে থাকবে
+>>>>>>> 8ae55afdb29bb7667223b57bacd543f23387ddf4
                 item(span = { GridItemSpan(2) }) {
                     Text(
                         text = "Trending Now 🔥",
@@ -64,6 +76,10 @@ fun HomeScreen(
                     )
                 }
 
+<<<<<<< HEAD
+=======
+                // মুভি লিস্ট
+>>>>>>> 8ae55afdb29bb7667223b57bacd543f23387ddf4
                 items(movies.itemCount) { index ->
                     val movie = movies[index]
                     if (movie != null) {
@@ -73,6 +89,10 @@ fun HomeScreen(
                     }
                 }
 
+<<<<<<< HEAD
+=======
+                // পেজ লোডিং লোডার (নিচে)
+>>>>>>> 8ae55afdb29bb7667223b57bacd543f23387ddf4
                 item(span = { GridItemSpan(2) }) {
                     if (movies.loadState.append is LoadState.Loading) {
                         Box(
@@ -87,6 +107,10 @@ fun HomeScreen(
                 }
             }
 
+<<<<<<< HEAD
+=======
+            // ইন্টারনেট এরর হ্যান্ডলিং
+>>>>>>> 8ae55afdb29bb7667223b57bacd543f23387ddf4
             if (movies.loadState.refresh is LoadState.Error) {
                 Box(modifier = Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
                     Column(horizontalAlignment = Alignment.CenterHorizontally) {

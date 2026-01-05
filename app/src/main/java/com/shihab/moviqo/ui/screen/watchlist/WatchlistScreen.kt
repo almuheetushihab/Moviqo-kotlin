@@ -21,7 +21,11 @@ import com.shihab.moviqo.ui.navigation.Screen
 @Composable
 fun WatchlistScreen(
     navController: NavController,
+<<<<<<< HEAD
     viewModel: WatchlistViewModel = hiltViewModel()
+=======
+    viewModel: WatchlistViewModel = hiltViewModel() // ViewModel নিচে দেওয়া আছে
+>>>>>>> 8ae55afdb29bb7667223b57bacd543f23387ddf4
 ) {
     val favoriteMovies by viewModel.favorites.collectAsState(initial = emptyList())
 

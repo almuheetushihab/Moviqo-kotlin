@@ -27,6 +27,10 @@ fun ExploreScreen(
     val results = viewModel.searchResults.value
 
     Column(modifier = Modifier.fillMaxSize().padding(16.dp)) {
+<<<<<<< HEAD
+=======
+        // Search Bar
+>>>>>>> 8ae55afdb29bb7667223b57bacd543f23387ddf4
         OutlinedTextField(
             value = query,
             onValueChange = { viewModel.onSearchChange(it) },
@@ -35,9 +39,15 @@ fun ExploreScreen(
             leadingIcon = { Icon(Icons.Default.Search, contentDescription = null) },
             shape = RoundedCornerShape(24.dp),
             colors = OutlinedTextFieldDefaults.colors(
+<<<<<<< HEAD
                 focusedBorderColor = Color(0xFFE50914),
                 cursorColor = Color(0xFFE50914),
                 unfocusedBorderColor = Color.Gray
+=======
+                focusedBorderColor = Color(0xFFE50914), // ফোকাস করলে লাল বর্ডার
+                cursorColor = Color(0xFFE50914),        // লাল কার্সর
+                unfocusedBorderColor = Color.Gray       // ফোকাস না থাকলে গ্রে
+>>>>>>> 8ae55afdb29bb7667223b57bacd543f23387ddf4
             )
         )
 

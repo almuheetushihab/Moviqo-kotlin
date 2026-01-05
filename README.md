@@ -10,11 +10,19 @@
 
 | Home Screen | Shorts (Trailers) | Movie Details |
 |:---:|:---:|:---:|
+<<<<<<< HEAD
 | <img src="screenshot_home.jpg" width="250"/> | <img src="screenshot_shorts.jpg" width="250"/> | <img src="screenshot_details.jpg" width="250"/> |
 
 | Search/Explore | Watchlist | Settings |
 |:---:|:---:|:---:|
 | <img src="screenshot_search.jpg" width="250"/> | <img src="screenshot_watchlist.jpg" width="250"/> | <img src="screenshot_settings.jpg" width="250"/> |
+=======
+| <img src="img/home" width="250"/> | <img src="img/shorts.jpg" width="250"/> | <img src="img/details.jpg" width="250"/> |
+
+| Search & Explore | Watchlist | Settings |
+|:---:|:---:|:---:|
+| <img src="img/search.jpg" width="250"/> | <img src="img/watchlist.jpg" width="250"/> | <img src="img/settings.jpg" width="250"/> |
+>>>>>>> 8ae55afdb29bb7667223b57bacd543f23387ddf4
 
 ## ✨ Key Features
 
@@ -62,6 +70,10 @@ Contributions are welcome! If you find a bug or want to add a feature, feel free
 
 This project is licensed under the MIT License.
 
+<<<<<<< HEAD
+=======
+Notion : https://wholesale-wallet-b2d.notion.site/Moviqo-Project-Documentation-2df0765c54638060bcc6effc3bae0cf3?source=copy_link
+>>>>>>> 8ae55afdb29bb7667223b57bacd543f23387ddf4
 ---
 <div align="center">
   Built with ❤️ by <a href="https://www.linkedin.com/in/your-profile">MD. AL MUHEETU</a>

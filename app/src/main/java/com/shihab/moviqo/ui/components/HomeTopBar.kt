@@ -18,9 +18,16 @@ fun HomeTopBar(onSearchClick: () -> Unit) {
     TopAppBar(
         title = {
             Row(verticalAlignment = Alignment.CenterVertically) {
+<<<<<<< HEAD
                 Text(
                     text = "MOVIQO",
                     color = Color(0xFFE50914),
+=======
+                // এখানে আমরা অ্যাপের নাম লোগো হিসেবে দেখাচ্ছি
+                Text(
+                    text = "MOVIQO",
+                    color = Color(0xFFE50914), // Netflix Red Color
+>>>>>>> 8ae55afdb29bb7667223b57bacd543f23387ddf4
                     fontSize = 24.sp,
                     fontWeight = FontWeight.ExtraBold,
                     letterSpacing = 2.sp

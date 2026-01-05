@@ -28,6 +28,10 @@ fun SettingsScreen(navController: NavController) {
             headlineContent = { Text("Privacy Policy") },
             leadingContent = { Icon(Icons.Default.Lock, contentDescription = null) },
             modifier = Modifier.clickable {
+<<<<<<< HEAD
+=======
+                // আপনার প্রাইভেসি পলিসি লিংক এখানে দিন
+>>>>>>> 8ae55afdb29bb7667223b57bacd543f23387ddf4
                 val intent = Intent(Intent.ACTION_VIEW, Uri.parse("https://google.com"))
                 context.startActivity(intent)
             }
